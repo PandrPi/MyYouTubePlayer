@@ -1,12 +1,106 @@
-﻿<Window x:Class="MyYouTubePlayer.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyYouTubePlayer"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        x:Class="MyYouTubePlayer.MainWindow"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+
+    mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="906" Loaded="Window_Loaded" Closing="Window_Closing" KeyDown="Window_KeyDown" WindowState="Maximized">
+    <Grid x:Name="MainGrid">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFFE286" Offset="0.36"/>
+                <GradientStop Color="#FFEFC94C" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!--    User Grid   -->
+
+        <Grid x:Name="ScreenGrid" Margin="80,10" Background="White">
+            <Grid.Effect>
+                <DropShadowEffect ShadowDepth="20" Opacity="0.6" Direction="-90" RenderingBias="Quality" BlurRadius="15"/>
+            </Grid.Effect>
+            <wpf:ChromiumWebBrowser x:Name="webBrowser" Address="https://www.youtube.com/watch?v=taUG9-LA_QE" />
+        </Grid>
+
+        <!--    Playlist Grid   -->
+
+        <Grid x:Name="PlaylistGrid" Background="#FF434F5B" Width="50" HorizontalAlignment="Right">
+            <Grid.Effect>
+                <DropShadowEffect Direction="180" Opacity="0.5" ShadowDepth="2" RenderingBias="Quality"/>
+            </Grid.Effect>
+            <Rectangle Fill="#FF2E2E2E" Height="48" Margin="2,0,0,0" Stroke="Black" VerticalAlignment="Top" RadiusX="1" RadiusY="1" StrokeThickness="0" Cursor="Hand" />
+            <Border BorderBrush="#FF8AB839" BorderThickness="2,0,0,0" HorizontalAlignment="Left" Width="2" >
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="1" Opacity="0.5"/>
+                </Border.Effect>
+            </Border>
+            <Label Content="Found 10 user playlists" Height="35" Margin="49,6,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Foreground="White" Padding="10,5,5,5"/>
+            <Separator Height="7" Margin="2,45,0,0" VerticalAlignment="Top">
+                <Separator.Effect>
+                    <DropShadowEffect ShadowDepth="1" Opacity="0.5"/>
+                </Separator.Effect>
+            </Separator>
+            <Grid Height="130" Margin="10,69,10,0" VerticalAlignment="Top">
+                <Rectangle Fill="#FFC0E4FA" Margin="0,33,0,0" RadiusY="1" RadiusX="1" Stroke="Black" StrokeThickness="0">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Opacity="0.45" ShadowDepth="2"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <Rectangle Fill="#FF2E2E2E" Height="35" Margin="0,0,0,-2" Stroke="Black" VerticalAlignment="Top" RadiusX="1" RadiusY="1" StrokeThickness="0" Cursor="Hand">
+                    <Rectangle.Effect>
+                        <DropShadowEffect Opacity="0.5" ShadowDepth="2"/>
+                    </Rectangle.Effect>
+                </Rectangle>
+                <iconPacks:PackIconMaterial Kind="ArrowDownDropCircleOutline" HorizontalAlignment="Left" Height="16" Margin="10,9,0,0" VerticalAlignment="Top" Width="16" Foreground="#FF8AB839" Cursor="Hand"/>
+                <TextBlock Text="The Story of My Preferences" Height="23" Margin="32,6,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Medium" Foreground="White" TextTrimming="CharacterEllipsis" Cursor="Hand"/>
+                <Border BorderBrush="#FF8AB839" BorderThickness="0,0,0,2" Height="2" Margin="0,33,0,0" VerticalAlignment="Top"/>
+            </Grid>
+            <Ellipse HorizontalAlignment="Left" Height="30" Margin="11,9,0,0" VerticalAlignment="Top" Width="30" Fill="#FF2E2E2E" Cursor="Hand" Stroke="White"/>
+            <iconPacks:PackIconMaterial Kind="Menu" HorizontalAlignment="Left" Height="14" Margin="19,17,0,0" VerticalAlignment="Top" Width="14" Foreground="White" Cursor="Hand"/>
+        </Grid>
+
+        <!--    User Grid   -->
+
+        <Grid x:Name="UserGrid" HorizontalAlignment="Left" Width="50" Background="#FF434F5B">
+            <Grid.Effect>
+                <DropShadowEffect Direction="0" Opacity="0.5" ShadowDepth="2"/>
+            </Grid.Effect>
+            <Border BorderBrush="#FF8AB839" BorderThickness="0,0,2,0" HorizontalAlignment="Right" Width="2"/>
+            <iconPacks:PackIconMaterial Kind="AccountCircle" Foreground="#FFC0E4FA" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Margin="9,9,0,0" Cursor="Hand">
+                <iconPacks:PackIconMaterial.Effect>
+                    <DropShadowEffect ShadowDepth="1" Opacity="0.5"/>
+                </iconPacks:PackIconMaterial.Effect>
+            </iconPacks:PackIconMaterial>
+            <Separator Height="6" Margin="0,45,2,0" VerticalAlignment="Top">
+                <Separator.Effect>
+                    <DropShadowEffect ShadowDepth="1" Opacity="0.5"/>
+                </Separator.Effect>
+            </Separator>
+            <TextBlock x:Name="UsernameTextBlock" Text="PandrPi" Height="24" Margin="44,13,31,0" VerticalAlignment="Top" FontSize="14" FontWeight="Medium" Foreground="White" TextTrimming="CharacterEllipsis" Cursor="Hand">
+                <TextBlock.ToolTip>
+                    <ToolTip>
+                        User name
+                    </ToolTip>
+                </TextBlock.ToolTip>
+            </TextBlock>
+            <iconPacks:PackIconMaterial x:Name="UserLogButton" Kind="Logout" Foreground="#FFC0E4FA" HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="16" Margin="174,16,0,0" Cursor="Hand">
+                <iconPacks:PackIconMaterial.Effect>
+                    <DropShadowEffect ShadowDepth="1" Opacity="0.5"/>
+                </iconPacks:PackIconMaterial.Effect>
+                <iconPacks:PackIconMaterial.ToolTip>
+                    <ToolTip>
+                        Click to Log out
+                    </ToolTip>
+                </iconPacks:PackIconMaterial.ToolTip>
+            </iconPacks:PackIconMaterial>
+            <local:MenuButton HorizontalAlignment="Left" Height="36" Margin="0,64,0,0" VerticalAlignment="Top" Width="198" HoverColor="#FFFF0707" BorderBrush="#FF8CB24A" Background="#FF00FF74" BorderThickness="3,0,0,0"/>
+            <local:MenuButton HorizontalAlignment="Left" Height="36" Margin="0,114,0,0" VerticalAlignment="Top" Width="198" HoverColor="#FFFF0707" BorderBrush="#FF8CB24A" Background="#FF00FF74" BorderThickness="3,0,0,0"/>
+        </Grid>
+
     </Grid>
 </Window>

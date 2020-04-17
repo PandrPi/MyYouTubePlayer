@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="MyYouTubePlayer.MenuButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MyYouTubePlayer"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="200" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave">
+
+
+
+    <Grid x:Name="btnGrid" Background="{Binding Path=Background}">
+        <Border x:Name="btnBorder" BorderBrush="{Binding Path=BorderBrush}" BorderThickness="4,0,0,0" HorizontalAlignment="Left" Width="4" />
+
+
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <SolidColorBrush Color="Transparent"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Style>
+    </Grid>
+</UserControl>
